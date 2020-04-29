@@ -6,12 +6,12 @@ description: > # Meta description of Homepage
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "/portfolio" # the subpath of your site, e.g. /blog
+baseurl: "/portfolioweb" # the subpath of your site, e.g. /blog
 url: "https://johndelara1.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # SEO PLUGIN
 social:
-  name: Your Name
+  name: John de Lara
   links:
     #- https://twitter.com/BenBalter
     #- https://www.facebook.com/ben.balter
@@ -22,9 +22,9 @@ social:
 
 # THEME SETTINGS
 navigation: # Navigation links
-  - {name: 'Home', link: '/'}
-  - {name: 'About', link: '/about'}
-  - {name: 'Contact', link: '/contact'}
+  - {name: 'Início', link: '/'}
+  - {name: 'Sobre', link: '/about'}
+  - {name: 'Contato', link: '/contact'}
 
 tagline: >
   Modern Jekyll theme focused on speed performance &amp; SEO best practices
@@ -33,7 +33,7 @@ hero_img: posts/sleek_lg.jpg # Main background image: use the path from /assets/
 
 email: johndelara1@gmail.com # email for form submission
 
-twitter_username: johndelara1 # replace with your_twitter_username or comment to remove link from footer
+twitter_username: johndelara01 # replace with your_twitter_username or comment to remove link from footer
 github_username:  johndelara1 # replace with your_github_username or comment to remove link from footer
 instagram_username: johndelara1 # replace with your_instagram_username or comment to remove link from footer
 
