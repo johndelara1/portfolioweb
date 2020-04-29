@@ -29,7 +29,7 @@ tagline: >
   Aqui você encontrará meus projetos, análises e estudos relacionado à Ciência de Dados, aplicação de Machine Learning, entre outros.
 
 hero_img: posts/sleek_lg.jpg # Main background image: use the path from /assets/img/ => This will output /assets/img/posts/sleek_lg.jpg
-
+hero_img: posts/trajetoria_lg.jpg
 email: johndelara1@gmail.com # email for form submission
 
 twitter_username: johndelara01 # replace with your_twitter_username or comment to remove link from footer
