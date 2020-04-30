@@ -4,8 +4,7 @@ title: Sobre
 permalink: /sobre/
 ---
 
-### SOBRE
-![participantes](https://dl.dropbox.com/s/jen9ofeirmfu99u/candidatos_por_estado.png?dl=0)
+![participantes](https://dl.dropbox.com/s/bo94l66zuz2nqup/sleek.jpg?dl=0)
 
 No ano de 2017 eu decidi voltar aos estudos, como já estava atuando em minha formação, até então, da área de conhecimento da administração, alguns anos posteriores, percebi o quanto a minha tendência profissional estava sendo guiada para a área da computação, ou seja, conhecimentos de estatística e de gestão. Fiz alguns estudos sobre os campos de meu interesse, pensando em qual área eu gostaria de trabalhar em meu futuro e, cheguei à conclusão, de que Inteligência Artificial se torna cada vez mais necessária em diversos campos do conhecimento, com potencial muito forte para amplas ideias, que já estavam consolidadas em minha mente. Sendo assim, iniciei outro curso de graduação, comecei a estudar Sistemas de Informação, com o foco voltado a IA(Inteligência Artificial), o aprendizado sobre minha futura área e conciliando meu trabalho, na época como Gerente da Federação de Taekwondo, resolvi optar por uma universidade, que tivesse horários melhor bem definidos e ainda que fosse uma das melhores do estado.
 
