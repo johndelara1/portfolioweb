@@ -12,6 +12,7 @@ categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
 > 
 > **Então aperte o cinto e vamos nessa!**
 
+---
 ##### Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
 
 As **regras de associação** utilizam características que mais se assemelham entre itens para descrever o ***comportamento*** que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no banco de dados.
@@ -20,10 +21,16 @@ As **regras de associação** utilizam características que mais se assemelham e
 Este algoritmo conhecido por quem comprou, comprou também, ***utiliza como conceito básico o perfil*** como exemplo, clientes que compram os itens semelhantes. 
 
 > *Nós teremos o nível de confiança e suporte para comprar os itens semelhantes, 
->surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. Porém não se restringe apenas a essas aplicações.
+> surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. Porém não se restringe apenas a essas aplicações.*
 >
-> Vamos apresentar a utilização de regras de associação para descobrir impactos de crimes na Inglaterra.
+> *Vamos apresentar a utilização de regras de associação para descobrir impactos de crimes na Inglaterra.*
 >
-> Mais precisamente em Swindow e Wiltshire, a análise será realizada com o dataset da polícia da Inglaterra, desenvolvimento do projeto foi realizado em cima da linguagem R, utilizando a IDE Rstudio.*
+> *Mais precisamente em **Swindow e Wiltshire**, a análise será realizada com o **dataset da polícia da Inglaterra**, desenvolvimento do projeto foi realizado em cima da **linguagem R**, utilizando a **IDE Rstudio.***
 
 ---
+
+A maioria das empresas atualmente possuem uma grande massa de dados e informações
+sendo produzidas diariamente, armazenadas em bancos de dados estruturados e não
+estruturados, consumidas por softwares e sistemas de gerenciamento que trazem algumas
+ações para auxiliar no **aumento de suas vendas, ações de marketing, promoções** ou até mesmo
+informações sobre a **saúde financeira da organização.** 
