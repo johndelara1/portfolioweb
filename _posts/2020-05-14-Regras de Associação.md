@@ -5,15 +5,22 @@ UTILIZANDO R E CLUSTER SPARK"
 featured-img: bandeira_inglaterra
 categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
 ---
-As regras de associação utilizam características que mais se assemelham entre itens para descrever o comportamento que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no bancode dados. 
+
+Você já ouviu falar de regras de associação?
+
+> Tema que iremos abordar neste artigo são a regras de associação, entenda como é possível identificar forte ligação matemática de alguns fenômenos e que podem ajudar a explicar seus acontecimentos.
+> 
+>Então aperte o cinto e vamos nessa!
+
+Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
+
+As regras de associação utilizam características que mais se assemelham entre itens para descrever o comportamento que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no bancode dados.
+
 Este algoritmo conhecido por quem comprou, comprou também, utiliza como conceito básico o perfil de clientes que compram os itens semelhantes, e possuem um nível de confiança e suporte para comprar os itens semelhantes, surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. 
+
 Porém não se restringe apenas a essa aplicação, neste artigo, vamos apresentar a utilização de regras de associação para descobrir impactos de crimes na Inglaterra, mais precisamente em Swindow e Wiltshire, a análise será realizada com o dataset da polícia da Inglaterra, desenvolvimento do projeto foi realizado em cima da linguagem R, utilizando a IDE Rstudio.
 
-> *Neste [notebook](https://colab.research.google.com/drive/1dpzT8dDaiNHfxP2AXAMP-xk4OUCl5f2x) está toda minha análise e os tratamentos realizados. Aqui deixo para consulta o deploy da aplicação [APLICAÇÃO](http://enem-2016.herokuapp.com)
 
-Vamos realizar a análise da base do ENEM de 2016, fazer a previsão da nota de matemática dos candidados e tentar saber como que se saíram, qual foi o estado com mais participantes e qual foi a melhor pontuação e mais. Então vamos lá!
-
-Para iniciar fiz a importação da base de [treino](https://dl.dropbox.com/s/1dcc81bthwmw47r/train.csv?dl=0) e de [teste](https://dl.dropbox.com/s/ycp6it0mmndajco/test.csv?dl=0).
 
 {% highlight python %}
 train = pd.read_csv('https://dl.dropbox.com/s/1dcc81bthwmw47r/train.csv?dl=0', index_col=0)
