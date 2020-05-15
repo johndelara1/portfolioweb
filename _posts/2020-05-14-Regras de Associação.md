@@ -97,3 +97,30 @@ de itens candidatos.
 Decomposição em tarefas menores usando o **método particional** é por fim o último processo realizado pelo algoritmo.
 Para construção da FP-Tree que acontece após a seleção do valor do **minSup**, com a varredura da base de dados 
 e o armazenamento e **ordenação decrescente dos conjuntos de itens frequentes**  encontrados (Araújo, B.; Maciel, 2018).
+
+## MÃO NA MASSA
+
+Para realização deste estudo, vamos analisar as regiões de **Swindon** dentro do condado de Wiltshire que
+possuem os índices de criminalidades menos latentes na Inglaterra como descrições abaixo:
+
+> **Swindon é uma cidade do Sudoeste da Inglaterra.Fundada em 1663.Swindon é a maior cidade**
+> **do condado de Wiltshire. é o maior pólo industrial do sudoeste da Inglaterra, Sendo a décima maior da**
+> **Inglaterra.O seu pólo financeiro é o segundo maior do sudoeste da Inglaterra. A cidade possui uma das**
+> **economias mais diversificadas da Inglaterra,com a maior concentração de sedes de empresas, instituições**
+> **culturais e a maior comunidade artística do sudoeste da Inglaterra. Em janeiro de 2005, Swindon foi**
+> **escolhida pelo governo inglês como uma das capitais culturais da Inglaterra. É uma das cidades mais**
+> **seguras da Inglaterra - sua taxa de criminalidade é menor do que qualquer grande cidade inglesa, e a menor**
+> **do Sudoeste da Inglaterra (wikipédia).**
+
+
+> Wiltshire é um condado cerimonial da Inglaterra, situado na parte sudoeste da ilha. Ocupa uma
+área de 3 481 km² e seu centro administrativo é localizado em uma região de terras altas, dotada de colinas
+(como as de Marlborough), Wiltshire tem como limítrofes ao norte o condado de Gloucestershire, ao sul o
+de Dorset, a oeste o de Somerset, a leste o de Berkshire, a nordeste o de Oxfordshire e a sudeste, o de
+Hampshire. Sua economia se baseia na agricultura, pecuária e na indústria de tapetes e têxteis. Aí se
+encontra o famoso monumento neolítico de Stonehenge, entre outros sítios arqueológicos, por possuírem
+índices baixos de criminalidade em Londres. (wikipédia).
+
+Foram extraídos datasets do website da polícia do Reino Unido
+
+https://data.police.uk/data. 
