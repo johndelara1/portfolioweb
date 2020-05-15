@@ -13,7 +13,7 @@ categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
 > **Então aperte o cinto e vamos nessa!**
 
 ---
-## Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
+### Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
 
 As **regras de associação** utilizam características que mais se assemelham entre itens para descrever o ***comportamento*** que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no banco de dados.
 
@@ -44,7 +44,7 @@ Existem diversas técnicas de regras de associação, destacamos então o algori
 desempenho de processamento. Outro destaque se formula em cima do algoritmo FP-Growth que foi projetado
 baseado-se no funcionamento do apriori.
 
-## ALGORITMO APRIORI
+### ALGORITMO APRIORI E SEU FUNCIONAMENTO 
 
    O algoritmo foi proposto em 1994, por Agrawal e Srikant, foi o pioneiro, um dos mais
 famosos e utilizado em regras de associação levando em consideração a eficácia em encontrar
@@ -52,7 +52,7 @@ itemsets frequentes em grandes bancos de dados, **gerando regras fortes de assoc
 Podemos dividir em duas estruturas de funcionamento do Apriori, a **geração do conjunto**
 **de itens frequentes e geração das regras**, vez ou outra uma economia de custo computacional.
 
-   Uma geração de um conjunto de **k-itemsets candidatos**, após o processo anterior, ele faz
+Uma geração de um conjunto de **k-itemsets candidatos**, após o processo anterior, ele faz
 verificação dos candidatos que são mais frequentes através de uma **varredura de toda base de dados**,
 ou seja, aqueles que possuem o suporte com valor maior do que o **minSup determinado**, gerando
 um conjunto de itens frequentes. Agora com um conjunto de k-itemsets frequentes, com k ≥ 2,
@@ -67,3 +67,33 @@ O cálculo da confiança, sendo:
     
 Se valor da confiança for maior ou igual ao **minConf determinado**, a regra é considerada válida.
 
+Consideramos um itemset frequente, caso todos os seus subconjuntos não vazios
+também sejam frequentes, então se o itemset que não é frequente, da mesma forma seus
+subconjuntos também não são frequentes.
+ 
+Esta regra só é válida de acordo com a propriedade
+anti-monotônica do suporte, com garantia de que o suporte de um conjunto frequente nunca
+exceda o suporte de seus subconjuntos.
+
+### ALGORITMO FP-GROWTH E SEU FUNCIONAMENTO
+
+Com a evolução dos algoritmos de regras de associação outros algoritmos surgiram
+baseando-se no conceito do Apriori, foram encontradas algumas lacunas, como
+a execução de muitos acessos ao banco de dados e no tratamento de uma grande quantidade de
+conjuntos de itens candidatos, ocasionados por um grande número de itens frequentes ou caso
+o valor do minSup seja muito baixo, e **como resolver este problema?**
+
+Em 2000 foi desenvolvido por Han, Pey e Yin, em 2000, o algoritmo **FP-Growth (Frequent Pattern Growth)** 
+para suprir essas necessidades. Fazendo uso de estruturas de dados de **árvore** através de prefixos para padrões 
+frequentes, usada para extração dos conjuntos de itens constantes na própria estrutura, compactada onde armazena
+informações permitindo Data Mining eficaz sem a necessidade de vários acessos a base de dados. 
+
+No primeiro acesso encontra e ordena os itemsets frequentes e no segundo e último
+constrói a árvore, chamada de **FP-Tree (Frequent Pattern Tree),** que por sua vez, fica responsável por Compactar
+o banco de dados e transformar em uma estrutura geralmente menor em formato de árvore FP-Tree, 
+posteriormente o algoritmo realiza a **mineração na árvore** em busca de evitar uma grande geração de conjuntos
+de itens candidatos. 
+
+Decomposição em tarefas menores usando o **método particional** é por fim o último processo realizado pelo algoritmo.
+Para construção da FP-Tree que acontece após a seleção do valor do **minSup**, com a varredura da base de dados 
+e o armazenamento e **ordenação decrescente dos conjuntos de itens frequentes**  encontrados (Araújo, B.; Maciel, 2018).
