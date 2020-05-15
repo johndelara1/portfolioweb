@@ -6,7 +6,7 @@ featured-img: bandeira_inglaterra
 categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
 ---
 
-#### Você já ouviu falar de regras de associação?
+# Você já ouviu falar de regras de associação?
 
 > *Tema que iremos abordar neste artigo são a regras de associação, entenda como é possível identificar forte ligação matemática de alguns fenômenos e que podem ajudar a explicar seus acontecimentos.*
 > 
