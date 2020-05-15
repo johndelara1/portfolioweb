@@ -13,7 +13,7 @@ categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
 > **Então aperte o cinto e vamos nessa!**
 
 ---
-##### Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
+## Vamos para uma breve apresentação desta fantástica ferramenta já consolidada e difundida:
 
 As **regras de associação** utilizam características que mais se assemelham entre itens para descrever o ***comportamento*** que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no banco de dados.
 
@@ -34,4 +34,8 @@ sendo produzidas diariamente, armazenadas em bancos de dados estruturados e não
 estruturados, consumidas por softwares e sistemas de gerenciamento que trazem algumas
 ações para auxiliar no **aumento de suas vendas, ações de marketing, promoções** ou até mesmo
 informações sobre a **saúde financeira da organização.** 
+
+Quando falamos em dados das empresa, temos a preocupação de colocar em nosso radar os **dados não gerenciaveis** pela organização, 
+podendo carregar conhecimentos valiosos e extremamente úteis que **quando cruzados** com outras informações 
+**auxiliam na tomada de deciões** dos gestores, investidores ou clientes  envolvidos.
 
