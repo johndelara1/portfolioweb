@@ -46,17 +46,24 @@ baseado-se no funcionamento do apriori.
 
 ## ALGORITMO APRIORI
 
-** O algoritmo foi proposto em 1994, por Agrawal e Srikant, foi o pioneiro, um dos mais
+   O algoritmo foi proposto em 1994, por Agrawal e Srikant, foi o pioneiro, um dos mais
 famosos e utilizado em regras de associação levando em consideração a eficácia em encontrar
-itemsets frequentes em grandes bancos de dados, gerando regras fortes de associação.
-Podemos dividir em duas estruturas de funcionamento do Apriori, a geração do conjunto
-de itens frequentes e geração das regras, vez ou outra uma economia de custo computacional.
-Uma geração de um conjunto de k-itemsets candidatos, após o processo anterior, ele faz
-verificação dos candidatos são mais frequentes através de uma varredura de toda base de dados,
-ou seja, aqueles que possuem o suporte com valor maior do que o minSup determinado, gerando
+itemsets frequentes em grandes bancos de dados, **gerando regras fortes de associação.**
+Podemos dividir em duas estruturas de funcionamento do Apriori, a **geração do conjunto**
+**de itens frequentes e geração das regras**, vez ou outra uma economia de custo computacional.
+
+   Uma geração de um conjunto de **k-itemsets candidatos**, após o processo anterior, ele faz
+verificação dos candidatos que são mais frequentes através de uma **varredura de toda base de dados**,
+ou seja, aqueles que possuem o suporte com valor maior do que o **minSup determinado**, gerando
 um conjunto de itens frequentes. Agora com um conjunto de k-itemsets frequentes, com k ≥ 2,
 as regras de associação são instituídas, de forma que os itens AB e ABCD sejam frequentes,
-como exemplo vamos avaliar a regra AB ⇒ CD, o cálculo da confiança, sendo conf(AB ⇒ CD) 
-= sup(ABCD)/sup(AB). Se valor da confiança for maior ou igual ao minConf determinado, a
-regra é considerada válida. **
+como exemplo vamos avaliar a regra:
+
+    AB ⇒ CD
+
+O cálculo da confiança, sendo:
+
+    conf(AB ⇒ CD) = sup(ABCD)/sup(AB)
+    
+Se valor da confiança for maior ou igual ao **minConf determinado**, a regra é considerada válida.
 
