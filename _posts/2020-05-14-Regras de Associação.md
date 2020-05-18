@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "REGRAS DE ASSOCIAÇÃO: ANÁLISES SOBRE CRIMES NA INGLATERRA
+title: "ANÁLISES SOBRE CRIMES NA INGLATERRA
 UTILIZANDO R E CLUSTER SPARK"
 featured-img: bandeira_inglaterra
-categories: [Machine Learning, Data Analysis, Rstudio, Big Data]
+categories: [Regras de Assiciação, Data Analysis, Rstudio]
 ---
 
 # Você já ouviu falar de regras de associação?
@@ -25,7 +25,7 @@ Este algoritmo conhecido por quem comprou, comprou também, ***utiliza como conc
 >
 > Vamos apresentar a utilização de regras de associação para descobrir impactos de crimes na Inglaterra.
 >
-> Mais precisamente em **Swindow e Wiltshire**, a análise será realizada com o **dataset da polícia da Inglaterra**, desenvolvimento do projeto foi realizado em cima da **linguagem R**, utilizando a **IDE Rstudio.**
+> Mais precisamente em **Swindow**, a análise será realizada com o **dataset da polícia da Inglaterra**, desenvolvimento do projeto foi realizado em cima da **linguagem R**, utilizando a **IDE Rstudio.**
 
 ---
 
