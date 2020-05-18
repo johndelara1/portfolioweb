@@ -125,4 +125,34 @@ encontra o famoso monumento neolítico de Stonehenge, entre outros sítios arque
 
 [Dados da polícia do Reino Unido](https://data.police.uk/data)
 
-![Bandeira](https://dl.dropbox.com/s/mrkmtoetdex7dm1/mapa.png?dl=0)
+![mapa](https://dl.dropbox.com/s/0938ovd3ra8u4fa/mapa.png?dl=0)
+
+Referentes a ocorrências criminais registradas no período de **julho de 2015 a junho de
+2018**, com variáveis como: o ****número identificador**** do crime, ****mês de ocorrência**** do crime, ****crime
+reportado para polícia****, ****longitude****, ****latitude****, ****localização****, ****tipo de crime****, ****última ação de categoria
+do crime****.
+
+![dataSet](https://dl.dropbox.com/s/8ko5co5c209v4kt/dataSet.png?dl=0)
+
+Com os dados de ocorrências de crimes, é possível analisar, preparar e minerar os dados
+para encontrar **regras de associação** entre os registros, ou seja, **relacionamentos frequentes** entre
+determinados atributos em nosso estudo de caso.
+
+**Data Wrangling (limpeza e manipulação de dados)**, com a base limpa após as análises
+sendo realizadas as tratativas de **dados nulos** como exemplo casos de **comportamento anti-social**
+precisou ser excluído, por conta do campo última ação de categoria do crime constar como nulo
+infelizmente, pode haver vários resultados associados ao Anti Social Behavior, porém não pode
+ser inferido que eles não estão resolvidos, anulando a análise para esse tipo de crime.
+
+![qtd_comportamento_anti_social](https://dl.dropbox.com/s/arrfn8idl0s1brx/qtd_comportamento_anti_social.png?dl=0)
+
+![describe](https://dl.dropbox.com/s/bn8g5l7urhyq8lk/describe.png?dl=0)
+
+Após a filtragem dos dados, restaram **8 colunas e 124,185 mil linhas (transações)**, com 
+a utilização do algoritmo FP-Growth utilizando a linguagem R, construiu-se um modelo de regras de associação 
+especificando um nível de **confiança mínima de 0.7** e de **suporte mínimo de 0.01**, utilizando o framework 
+spark, dentro da biblioteca Sparkr.
+
+
+![mapa_crimes](https://dl.dropbox.com/s/mcyl9lggekvsueh/mapa_crimes.png?dl=0)
+
