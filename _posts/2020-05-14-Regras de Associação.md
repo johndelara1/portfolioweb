@@ -128,9 +128,9 @@ encontra o famoso monumento neolítico de Stonehenge, entre outros sítios arque
 ![mapa](https://dl.dropbox.com/s/0938ovd3ra8u4fa/mapa.png?dl=0)
 
 Referentes a ocorrências criminais registradas no período de **julho de 2015 a junho de
-2018**, com variáveis como: o ****número identificador**** do crime, ****mês de ocorrência**** do crime, ****crime
-reportado para polícia****, ****longitude****, ****latitude****, ****localização****, ****tipo de crime****, ****última ação de categoria
-do crime****.
+2018**, com variáveis como: o ***número identificador*** do crime, ***mês de ocorrência*** do crime, ***crime
+reportado para polícia***, ***longitude***, ***latitude***, ***localização***, ***tipo de crime***, ***última ação de categoria
+do crime***.
 
 ![dataSet](https://dl.dropbox.com/s/8ko5co5c209v4kt/dataSet.png?dl=0)
 
