@@ -53,4 +53,9 @@ Nesse caso, ainda podemos criá-lo manualmente. Para compilar os arquivos indivi
 python -m compileall file_1.py ... file_n.py
 ```
 
+Todos os ```pyc``` arquivos gerados serão armazenados na ```__pycache__``` pasta. 
+Se você não fornecer nomes de arquivos, ```compileall```,ele compilará todos 
+os arquivos de código-fonte python na pasta atual.
+Também podemos usar a ```compile()``` função para compilar uma string 
+que contém o código fonte do Python. A sintaxe desta função é:
 
