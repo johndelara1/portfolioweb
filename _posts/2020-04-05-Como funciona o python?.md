@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "COMO FUNCIONA A LINGUAGEM PYTHON?"
-featured-img: bandeira_inglaterra
+featured-img: python
 categories: [Regras de Assiciação, Data Analysis, Rstudio]
 ---
 
