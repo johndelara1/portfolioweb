@@ -60,3 +60,10 @@ os arquivos de código-fonte python na pasta atual.
 Também podemos usar a ```compile()``` função para compilar uma string 
 que contém o código fonte do Python. A sintaxe desta função é:
 
+```compile(source, filename, mode, flag, dont_inherit, optimize)```
+
+Nós focamos apenas nos três primeiros argumentos que são necessários (os outros são opcionais). 
+sourceé o código-fonte a ser compilado, que pode ser um objeto String, Bytes ou AST. filenameé 
+o nome do arquivo de onde vem o código-fonte. Se o código-fonte não vier de um arquivo, 
+você pode escrever o que quiser ou deixar uma string vazia. modepode ser:
+
