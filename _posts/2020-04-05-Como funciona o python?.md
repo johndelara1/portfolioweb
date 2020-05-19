@@ -18,5 +18,13 @@ categories: [Regras de Assiciação, Data Analysis, Rstudio]
 > o código-fonte diretamente. O intérprete, específico da máquina de destino,
 > converte cada instrução do código-fonte em código de máquina e a executa.
 > 
-> **Então aperte o cinto e vamos nessa!**
+
+O Python é geralmente chamado de linguagem interpretada, no entanto, 
+combina compilação e interpretação. Quando executamos um 
+código fonte (um arquivo com uma .pyextensão), o Python primeiro o compila 
+em um **bytecode**. O bytecode é uma representação independente de plataforma 
+de baixo nível do seu código-fonte, no entanto, não é o código de máquina binário 
+e não pode ser executado diretamente pela máquina de destino. De fato, 
+é um conjunto de instruções para uma máquina virtual chamada 
+Python Virtual Machine (PVM).
 
