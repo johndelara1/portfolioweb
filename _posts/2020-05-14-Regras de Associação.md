@@ -3,7 +3,7 @@ layout: post
 title: "ANÁLISES SOBRE CRIMES NA INGLATERRA
 UTILIZANDO R E CLUSTER SPARK"
 featured-img: bandeira_inglaterra
-categories: [Regras de Assiciação, Data Analysis, Rstudio]
+categories: [Regras de Associação, Data Analysis, Rstudio]
 ---
 
 # Você já ouviu falar de regras de associação?

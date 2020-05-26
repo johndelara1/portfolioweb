@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "COMO FUNCIONA A LINGUAGEM PYTHON?"
+title: "COMO FUNCIONA A LINGUAGEM PYTHON: BAIXANDO O NÍVEL"
 featured-img: python
-categories: [Regras de Assiciação, Data Analysis, Rstudio]
+categories: [Python, Bytecode, Compilador]
 ---
 
 O código fonte de uma linguagem de programação pode ser executado
