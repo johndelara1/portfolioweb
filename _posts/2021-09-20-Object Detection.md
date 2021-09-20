@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Uma forma de começar com Object Detection!"
+title: "Começando com Object Detection!"
 featured-img: object_detection
 categories: [Object Detection, Visão Computacional, Inteligência Artificial, Deep Learning]
 ---
