@@ -19,6 +19,7 @@ Sobre **object detection** vamos utilizar o modelo ***YOLOv4***, a estrutura do 
 
 Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet*** Vamos utilizar o Google Colab disponibilizado por ele: ***https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE***. 
 
+### Recomendação:
 > Nós teremos o **nível de confiança e suporte** para comprar os itens semelhantes, 
 > surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. Porém não se restringe apenas a essas aplicações.
 >
