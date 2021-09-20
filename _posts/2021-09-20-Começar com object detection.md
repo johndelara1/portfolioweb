@@ -20,12 +20,9 @@ Sobre **object detection** vamos utilizar o modelo ***YOLOv4***, a estrutura do 
 Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet*** Vamos utilizar o Google Colab disponibilizado por ele: ***https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE***. 
 
 ### Recomendação:
-> Nós teremos o **nível de confiança e suporte** para comprar os itens semelhantes, 
-> surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. Porém não se restringe apenas a essas aplicações.
->
-> Vamos apresentar a utilização de regras de associação para descobrir impactos de crimes na Inglaterra.
->
-> Mais precisamente em **Swindow**, a análise será realizada com o **dataset da polícia da Inglaterra**, desenvolvimento do projeto foi realizado em cima da **linguagem R**, utilizando a **IDE Rstudio.**
+> Para rodar o script no google colab você vai precisar ter uma conta no google para isso!
+> Realize uma cópia do notebook antes de iniciar a execução do script.
+> Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
 
 ---
 
