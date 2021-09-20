@@ -14,10 +14,10 @@ categories: [Object Detection, Visão Computacional, Inteligência Artificial, D
 ---
 ### Vamos para uma breve apresentação sobre o que vamos apresentar aqui:
 
-Sobre **object detection** utilizam características que mais se assemelham entre itens para descrever o ***comportamento*** que um item possui em decorrência do outro, esse comportamento é medido de acordo com o número de dados transacionais existentes no banco de dados.
+Sobre **object detection** vamos utilizar o modelo ***YOLOv4***, a estrutura do ***Darknet***, mas sobre as anotações utilizaremos o tolkit chamado ***OIDv4_ToolKit*** para baixar anotações públicas do ***Google's Open Images Dataset*** .
 
 
-Este algoritmo conhecido por quem comprou, comprou também, ***utiliza como conceito básico o perfil*** como exemplo, clientes que compram os itens semelhantes. 
+Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet*** Vamos utilizar o Google Colab disponibilizado por ele: ***https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE***. 
 
 > Nós teremos o **nível de confiança e suporte** para comprar os itens semelhantes, 
 > surgem então sistemas de recomendação de produtos largamente utilizado em websites, redes sociais entre outros. Porém não se restringe apenas a essas aplicações.
