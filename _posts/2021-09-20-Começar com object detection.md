@@ -27,4 +27,3 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 
 ---
 
-
