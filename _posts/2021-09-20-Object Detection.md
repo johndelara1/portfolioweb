@@ -22,7 +22,9 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 ### Recomendação:
 
 > Para rodar o script no google colab você vai precisar ter uma conta no google para isso!
+
 > Realize uma cópia do notebook antes de iniciar a execução do script.
+
 > Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
 
 ---
