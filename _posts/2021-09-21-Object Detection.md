@@ -27,5 +27,8 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 
 > Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
 
+### ALGORITMO YOLOv4
+
+
 ---
 
