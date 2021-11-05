@@ -45,7 +45,7 @@ As células a seguir clonarão o darknet do famoso repositório do AlexeyAB, aju
 Não se preocupe com nenhum aviso ao executar a célula '! Make'!
 
 1) clone darknet repo
-> git clone https://github.com/AlexeyAB/darknet
+    git clone https://github.com/AlexeyAB/darknet
 
 2) Alterar makefile para ter GPU e OPENCV habilitados
 > !cd darknet
