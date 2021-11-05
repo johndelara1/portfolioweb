@@ -39,6 +39,12 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 
 Seu notebook agora deve ter a GPU habilitada!
 
+#### Etapa 2: clonagem e construção de Darknet
+As células a seguir clonarão o darknet do famoso repositório do AlexeyAB, ajustarão o Makefile para habilitar OPENCV e GPU para darknet e então construirão darknet.
 
+Não se preocupe com nenhum aviso ao executar a célula '! Make'!
+
+1) clone darknet repo
+> !git clone https://github.com/AlexeyAB/darknet
 ---
 
