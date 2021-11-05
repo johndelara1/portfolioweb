@@ -44,25 +44,29 @@ As células a seguir clonarão o darknet do famoso repositório do AlexeyAB, aju
 
 Não se preocupe com nenhum aviso ao executar a célula '! Make'!
 
-1) clone darknet repo
-    git clone https://github.com/AlexeyAB/darknet
+1) clone darknet repositório.
 
-2) Alterar makefile para ter GPU e OPENCV habilitados
-> !cd darknet
-> 
-> !sed -i 's/OPENCV=0/OPENCV=1/' Makefile
->
-> !sed -i 's/GPU=0/GPU=1/' Makefile
-> 
-> !sed -i 's/CUDNN=0/CUDNN=1/' Makefile
-> 
-> !sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile
+`!git clone https://github.com/AlexeyAB/darknet`
 
-4) verificar CUDA
->   !/usr/local/cuda/bin/nvcc --version
+3) Alterar makefile para ter GPU e OPENCV habilitados
+
+`!cd darknet`
+
+`!sed -i 's/OPENCV=0/OPENCV=1/' Makefile`
+
+`!sed -i 's/GPU=0/GPU=1/' Makefile`
+
+`!sed -i 's/CUDNN=0/CUDNN=1/' Makefile`
+
+`!sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile`
+
+5) verificar CUDA
+
+`!/usr/local/cuda/bin/nvcc --version`
 
 5) make Darknet (constrói darknet para que você possa usar o arquivo executável darknet para executar ou treinar detectores de objetos)
->    !make
+
+`!make`
 
 ### Etapa 3: Baixe pesos YOLOv4 pré-treinados
 YOLOv4 já foi treinado no conjunto de dados coco, que tem 80 classes que ele pode prever. Pegaremos esses pesos pré-treinados para que possamos executar o YOLOv4 nessas classes pré-treinadas e obter detecções.
