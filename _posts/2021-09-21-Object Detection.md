@@ -21,11 +21,11 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 
 ## Recomendação:
 
-> Para rodar o script no google colab você vai precisar ter uma conta no google para isso!
+- Para rodar o script no google colab você vai precisar ter uma conta no google para isso!
 
-> Realize uma cópia do notebook antes de iniciar a execução do script.
+- Realize uma cópia do notebook antes de iniciar a execução do script.
 
-> Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
+- Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
 
 ## ALGORITMO YOLOv4
 
@@ -48,22 +48,26 @@ Não se preocupe com nenhum aviso ao executar a célula '! Make'!
 > git clone https://github.com/AlexeyAB/darknet
 
 2) Alterar makefile para ter GPU e OPENCV habilitados
-> cd darknet
-> sed -i 's/OPENCV=0/OPENCV=1/' Makefile
-> sed -i 's/GPU=0/GPU=1/' Makefile
-> sed -i 's/CUDNN=0/CUDNN=1/' Makefile
-> sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile
+> !cd darknet
+> 
+> !sed -i 's/OPENCV=0/OPENCV=1/' Makefile
+>
+> !sed -i 's/GPU=0/GPU=1/' Makefile
+> 
+> !sed -i 's/CUDNN=0/CUDNN=1/' Makefile
+> 
+> !sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile
 
 4) verificar CUDA
-> /usr/local/cuda/bin/nvcc --version
+>   !/usr/local/cuda/bin/nvcc --version
 
 5) make Darknet (constrói darknet para que você possa usar o arquivo executável darknet para executar ou treinar detectores de objetos)
-> make
+>    !make
 
 ### Etapa 3: Baixe pesos YOLOv4 pré-treinados
 YOLOv4 já foi treinado no conjunto de dados coco, que tem 80 classes que ele pode prever. Pegaremos esses pesos pré-treinados para que possamos executar o YOLOv4 nessas classes pré-treinadas e obter detecções.
 
-> wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
+    !wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
 
 ### Etapa 4: Como treinar seu próprio detector de objetos personalizados YOLOv4!
 Agora chega a hora de criar seu próprio detector de objetos YOLOv4 personalizado para reconhecer quaisquer classes / objetos que você deseja!
