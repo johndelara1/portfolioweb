@@ -1,91 +1,54 @@
 # Dependabot 2026 Remediation
 
 Date: 2026-06-22
-Branch: `security/dependabot-2026`
 
 ## Scope
 
-This remediation covers the Dependabot alerts for:
+This remediation covers the npm Dependabot alerts investigated in June 2026, including:
 
 - `lodash` / CVE-2026-4800 / GHSA-r5fr-rjxr-66jc
 - `tmp` / CVE-2026-44705
 - `shell-quote` / CVE-2026-9277
+- follow-up development-scope alerts for `elliptic`, `browserify-sign`, `xmlhttprequest-ssl`, `object-path`, `chownr`, `connect`, `express`, `serve-static`, `send`, `cookie`, and related transitive build packages
 
-The repository is a legacy Jekyll/Gulp GitHub Pages portfolio. No framework migration, redesign, portfolio content change, deployment setting change, alert dismissal, or `npm audit fix --force` was performed.
+The repository remains a legacy Jekyll/Gulp GitHub Pages portfolio. No framework migration, redesign, portfolio content change, deployment setting change, Dependabot alert dismissal, or `npm audit fix --force` was performed.
 
 ## Direct vs Transitive Dependencies
 
-`lodash`, `lodash.template`, `tmp`, and `shell-quote` were not direct dependencies in `package.json` before remediation. They were introduced through the legacy Node/Gulp build dependency tree.
+The vulnerable packages were not application runtime dependencies in the portfolio source. They were introduced through legacy Node/Gulp build and development dependencies.
 
-The remediation adds npm `overrides` for the vulnerable packages only, plus a lockfile update for the compatible `lodash.template` support package `lodash.templatesettings`.
+- `lodash`, `lodash.template`, `tmp`, and `shell-quote` were transitive.
+- `elliptic`, `browserify-sign`, `xmlhttprequest-ssl`, `object-path`, `chownr`, `connect`, `express`, `serve-static`, `send`, `cookie`, and `tar` were transitive.
+- Several final `npm audit` findings were transitive through legacy build tooling: `gulp-imagemin`, `gulp-sourcemaps`, `sw-precache`, `critical`, and `gulp`.
 
 ## Dependency Paths Before Remediation
 
-### lodash
+Representative vulnerable paths observed before remediation:
 
-`lodash` was transitive. The original lockfile contained vulnerable `lodash` versions `2.4.2`, `3.10.1`, and `4.17.4`.
-
-Observed dependency paths:
-
-- root -> `critical@1.0.0` -> `penthouse@1.1.2` -> `apartment@1.1.1` -> `lodash@3.10.1`
-- root -> `critical@1.0.0` -> `postcss-image-inliner@1.0.6` -> `asset-resolver@0.3.3` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `babel-generator@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `babel-register@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `babel-template@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `babel-traverse@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-core@6.26.0` -> `babel-types@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-preset-es2015@6.24.1` -> `babel-plugin-transform-es2015-block-scoping@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-preset-es2015@6.24.1` -> `babel-plugin-transform-es2015-classes@6.24.1` -> `babel-helper-define-map@6.26.0` -> `lodash@4.17.4`
-- root -> `babel-preset-es2015@6.24.1` -> `babel-plugin-transform-es2015-sticky-regex@6.24.1` -> `babel-helper-regex@6.26.0` -> `lodash@4.17.4`
-- root -> `browser-sync@2.18.13` -> `easy-extender@2.3.2` -> `lodash@3.10.1`
-- root -> `critical@1.0.0` -> `lodash@4.17.4`
-- root -> `critical@1.0.0` -> `filter-css@0.1.2` -> `lodash@4.17.4`
-- root -> `critical@1.0.0` -> `group-args@0.1.0` -> `lodash@4.17.4`
-- root -> `critical@1.0.0` -> `inline-critical@2.4.2` -> `lodash@4.17.4`
-- root -> `critical@1.0.0` -> `inline-critical@2.4.2` -> `cave@2.0.0` -> `lodash@2.4.2`
-- root -> `critical@1.0.0` -> `oust@0.4.0` -> `cheerio@0.19.0` -> `lodash@3.10.1`
-- root -> `eslint@4.15.0` -> `lodash@4.17.4`
-- root -> `eslint@4.15.0` -> `inquirer@3.3.0` -> `lodash@4.17.4`
-- root -> `eslint@4.15.0` -> `table@4.0.2` -> `lodash@4.17.4`
-- root -> `gulp-responsive@2.8.0` -> `lodash@4.17.4`
-- root -> `gulp-responsive@2.8.0` -> `async@2.6.0` -> `lodash@4.17.4`
-- root -> `gulp-sass@3.1.0` -> `node-sass@4.7.1` -> `gaze@1.1.2` -> `globule@1.2.0` -> `lodash@4.17.4`
-- root -> `gulp-sass@3.1.0` -> `node-sass@4.7.1` -> `sass-graph@2.2.4` -> `lodash@4.17.4`
-- root -> `gulp-uglify@3.0.0` -> `lodash@4.17.4`
-
-### lodash.template
-
-`lodash.template` was transitive. The original lockfile contained vulnerable `lodash.template` versions `3.6.2` and `4.4.0`.
-
-Observed dependency paths:
-
-- root -> `gulp-notify@3.2.0` -> `lodash.template@4.4.0`
-- root -> `sw-precache@5.2.0` -> `lodash.template@4.4.0`
-- root -> `critical@1.0.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> `gulp-autoprefixer@4.0.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> `gulp-htmlmin@3.0.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> `gulp-imagemin@4.0.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> `gulp-responsive@2.8.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> `gulp-sass@3.1.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-- root -> image optimization transitive stack -> `download@4.4.3` -> `gulp-decompress@1.2.0` -> `gulp-util@3.0.8` -> `lodash.template@3.6.2`
-
-### tmp
-
-`tmp` was transitive. The original lockfile contained vulnerable `tmp@0.0.33`.
-
-Observed dependency paths:
-
-- root -> `critical@1.0.0` -> `tmp@0.0.33`
-- root -> `eslint@4.15.0` -> `inquirer@3.3.0` -> `external-editor@2.1.0` -> `tmp@0.0.33`
-
-### shell-quote
-
-`shell-quote` was transitive. The original lockfile contained vulnerable `shell-quote@1.6.1`.
-
-Observed dependency path:
-
-- root -> `browserify@15.2.0` -> `shell-quote@1.6.1`
+| Package | Before remediation path |
+| --- | --- |
+| `lodash` | root -> legacy `critical`, Babel 6, BrowserSync, ESLint 4, Gulp, Node Sass, and image optimization dependency trees -> `lodash` |
+| `lodash.template` | root -> `gulp-util`, `gulp-notify`, and `sw-precache` dependency trees -> `lodash.template` |
+| `tmp` | root -> `critical@1.0.0` -> `tmp@0.0.33`; root -> `eslint@4.15.0` -> `inquirer` -> `external-editor` -> `tmp@0.0.33` |
+| `shell-quote` | root -> `browserify@15.2.0` -> `shell-quote@1.6.1` |
+| `elliptic` | root -> Browserify crypto signing stack -> `browserify-sign` -> `elliptic` |
+| `browserify-sign` | root -> `browserify` -> crypto polyfill/signing stack -> `browserify-sign` |
+| `xmlhttprequest-ssl` | root -> `browser-sync` -> Socket.IO client stack -> `xmlhttprequest-ssl` |
+| `object-path` | root -> legacy BrowserSync/server tooling -> `object-path` |
+| `chownr` / `tar` | root -> legacy native/module install tooling -> `tar` -> `chownr` |
+| `connect` | root -> `browser-sync` -> `connect` |
+| `express` | root -> BrowserSync UI/server stack -> `express` |
+| `serve-static` | root -> `browser-sync` -> `serve-static` |
+| `send` | root -> `browser-sync` / `serve-static` -> `send` |
+| `cookie` | root -> Socket.IO engine stack -> `cookie` |
+| `brace-expansion` | root -> `gulp-responsive`, `critical`, BrowserSync, Gulp clean, and `sw-precache` glob/minimatch stacks -> `brace-expansion@1.1.8` |
+| `hosted-git-info` | root -> `critical` -> `postcss-image-inliner` -> `asset-resolver` -> `meow` -> `normalize-package-data` -> `hosted-git-info@2.5.0` |
+| `ini` | root -> `gulp` -> `gulp-cli` -> `liftoff` -> `findup-sync` -> `resolve-dir` -> `global-modules` -> `global-prefix` -> `ini@1.3.4` |
+| `meow` / `trim-newlines` | root -> `sw-precache@4.1.0` -> `meow@3.7.0` -> `trim-newlines@1.0.0` |
+| `path-to-regexp` | root -> `sw-precache@4.1.0` -> `sw-toolbox@3.6.0` -> `path-to-regexp@1.7.0` |
+| `urijs` | root -> `sw-precache@4.1.0` -> `dom-urls@1.1.0` -> `urijs@1.19.0` |
+| `source-map-resolve` / `atob` | root -> `gulp-sourcemaps@2.6.1` -> `css@2.2.1` -> `source-map-resolve@0.3.1` -> `atob@1.1.3` |
+| image optimizer chain | root -> `gulp-imagemin@9.2.0` -> `imagemin` / image binary wrapper stack |
 
 ## Changes Made
 
@@ -93,30 +56,49 @@ Changed files:
 
 - `package.json`
 - `package-lock.json`
+- `gulpfile.babel.js` renamed to `gulpfile.js`
 - `docs/DEPENDABOT_2026_REMEDIATION.md`
 
-`package.json` now contains targeted npm overrides:
+Dependency and build changes:
 
-```json
-"overrides": {
-  "lodash": "4.18.1",
-  "lodash.template": "4.18.1",
-  "tmp": "0.2.7",
-  "shell-quote": "1.8.4"
-}
-```
+- Added targeted npm `overrides` for patched transitive packages, including `lodash@4.18.1`, `lodash.template@4.18.1`, `tmp@0.2.7`, `shell-quote@1.8.4`, `xmlhttprequest-ssl@4.0.0`, `object-path@0.11.8`, `chownr@1.1.4`, `connect@3.6.6`, `express@4.21.2`, `serve-static@1.16.2`, `send@0.19.2`, `cookie@0.7.2`, `sharp@0.35.2`, `brace-expansion@1.1.15`, `hosted-git-info@2.8.9`, `ini@1.3.8`, `meow@6.1.1`, `path-to-regexp@1.9.0`, `trim-newlines@3.0.1`, and `urijs@1.19.11`.
+- Replaced the legacy Browserify/Babel/Uglify JavaScript build with `esbuild`.
+- Replaced `gulp-htmlmin` with `html-minifier-terser`.
+- Updated `critical`, `gulp-autoprefixer`, `gulp`, `gulp-sass`, `sass`, `browser-sync`, `eslint`, `jquery`, and `lazysizes` to compatible maintained versions.
+- Removed `gulp-imagemin`; image generation still uses `gulp-responsive`/`sharp` with the existing resize and quality settings.
+- Removed `gulp-sourcemaps` from the Sass pipeline to remove the vulnerable source map parser chain.
+- Renamed the Gulpfile to `gulpfile.js`, matching `package.json`, `_config.yml`, and the README, and removing the non-fatal Gulp attempt to load Babel for `gulpfile.babel.js`.
+- Kept `package-lock.json` at `lockfileVersion: 1` for compatibility with the existing legacy lockfile format.
 
-`package-lock.json` remains `lockfileVersion: 1` to preserve the legacy lockfile format. The lockfile was updated only for the targeted dependency tree:
+## Before and After Versions
 
-| Package | Before | After | Reason |
-| --- | --- | --- | --- |
-| `lodash` | `2.4.2`, `3.10.1`, `4.17.4` | `4.18.1` | Patched lodash version for CVE-2026-4800 / GHSA-r5fr-rjxr-66jc |
-| `lodash.template` | `3.6.2`, `4.4.0` | `4.18.1` | `npm audit` also reported GHSA-r5fr-rjxr-66jc through `lodash.template` |
-| `lodash.templatesettings` | `3.1.1` | `4.2.0` | Required compatible dependency for `lodash.template@4.18.1` |
-| `tmp` | `0.0.33` | `0.2.7` | Patched version satisfying the requested `0.2.6 or newer` range |
-| `shell-quote` | `1.6.1` | `1.8.4` | Patched version for shell command quoting advisory |
-
-No unrelated package upgrades were intentionally applied.
+| Package | Before | After |
+| --- | --- | --- |
+| `lodash` | `2.4.2`, `3.10.1`, `4.17.4` | `4.18.1` |
+| `lodash.template` | `3.6.2`, `4.4.0` | `4.18.1` |
+| `tmp` | `0.0.33` | `0.2.7` |
+| `shell-quote` | `1.6.1` | `1.8.4` |
+| `xmlhttprequest-ssl` | vulnerable transitive version | `4.0.0` |
+| `object-path` | vulnerable transitive version | `0.11.8` |
+| `chownr` | vulnerable transitive version | `1.1.4` |
+| `connect` | vulnerable transitive version | `3.6.6` |
+| `express` | vulnerable transitive version | `4.21.2` |
+| `serve-static` | vulnerable transitive version | `1.16.2` |
+| `send` | vulnerable transitive version | `0.19.2` |
+| `cookie` | vulnerable transitive version | `0.7.2` |
+| `elliptic` | present through Browserify signing stack | removed from the installed dependency tree |
+| `browserify-sign` | present through Browserify signing stack | removed from the installed dependency tree |
+| `browserify` | `17.0.1` during stabilization | removed; replaced by `esbuild` |
+| Babel 6 build stack | present | removed from the installed dependency tree |
+| `gulp-imagemin` | `9.2.0` during stabilization | removed |
+| `gulp-sourcemaps` | `2.6.1` | removed |
+| `brace-expansion` | `1.1.8` | `1.1.15` under `minimatch@3.1.5` |
+| `hosted-git-info` | `2.5.0` | `2.8.9` |
+| `ini` | `1.3.4` | `1.3.8` |
+| `meow` | `3.7.0` under `sw-precache` | `6.1.1` under `sw-precache` |
+| `path-to-regexp` | `1.7.0` | `1.9.0` |
+| `trim-newlines` | `1.0.0` under `sw-precache` | `3.0.1` |
+| `urijs` | `1.19.0` | `1.19.11` |
 
 ## Vulnerable API Usage Check
 
@@ -131,19 +113,17 @@ Findings:
 - No repository source or build script directly uses `_.template`.
 - No repository source or build script directly uses `tmp.file`, `tmp.dir`, or `tmp.tmpName`.
 - No repository source or build script directly imports `shell-quote` or calls `quote()`.
-- `gulpfile.babel.js` directly imports `child_process` and uses `cp.spawn(jekyll, [ "build" ], { stdio: "inherit" })`.
+- `gulpfile.js` directly imports `child_process` and uses `cp.spawn(jekyll, [ "build" ], { stdio: "inherit" })`.
 - No direct `child_process.exec` use was found.
 - `script/server` and `script/cibuild` use shell commands with `bundle exec jekyll ...`; these are not uses of the vulnerable `shell-quote` API.
 
-The direct exposure risk in the portfolio source is low because the vulnerable APIs are not called by repository code. The remaining risk was in local development, CI, or future workflows that execute the legacy build dependency tree.
+The direct exposure risk in the portfolio source is low because the vulnerable APIs are not called by repository code. The practical risk was in local development, CI, or future workflows that execute the legacy build dependency tree.
 
 ## Validation
 
-### Required investigation commands
+### Required Investigation Commands
 
-The initial `npm ls` and `npm explain` commands could not resolve package paths before installing `node_modules`, because `node_modules` was absent. The dependency paths above were derived from `package-lock.json` and then confirmed after a script-free install.
-
-Commands run:
+Commands run during remediation:
 
 ```sh
 npm ls lodash tmp shell-quote
@@ -153,35 +133,19 @@ npm explain shell-quote
 npm audit
 ```
 
-Additional relevant command run because the lodash advisory was also present through `lodash.template`:
+Additional commands were run for follow-up findings:
 
 ```sh
+npm ls lodash tmp shell-quote elliptic serve-static chownr send express connect cookie xmlhttprequest-ssl object-path browserify-sign tar gulp-imagemin gulp-sourcemaps brace-expansion hosted-git-info ini meow path-to-regexp trim-newlines urijs
 npm explain lodash.template
+npm explain brace-expansion
+npm explain hosted-git-info
+npm explain ini
+npm explain meow
+npm explain path-to-regexp
+npm explain trim-newlines
+npm explain urijs
 ```
-
-### Post-remediation dependency tree
-
-Command:
-
-```sh
-npm ls lodash lodash.template tmp shell-quote
-```
-
-Result: exit code `0`.
-
-Resolved versions:
-
-- `lodash@4.18.1`
-- `lodash.template@4.18.1`
-- `tmp@0.2.7`
-- `shell-quote@1.8.4`
-
-Post-remediation `npm explain` confirmed:
-
-- `tmp@0.2.7` is overridden under `critical@1.0.0` and `external-editor@2.1.0`.
-- `shell-quote@1.8.4` is overridden under `browserify@15.2.0`.
-- `lodash.template@4.18.1` is overridden under `gulp-notify@3.2.0`, `gulp-util@3.0.8`, and `sw-precache@5.2.0`.
-- `lodash@4.18.1` is overridden across the legacy Babel, BrowserSync, Critical, ESLint, Gulp, Node Sass, and image optimization dependency tree.
 
 ### npm audit before remediation
 
@@ -191,26 +155,16 @@ Command:
 npm audit
 ```
 
-Run against a temporary copy of the original `package.json` and `package-lock.json` from `HEAD`.
+Original result from the legacy lockfile:
 
-Result: exit code `1`.
-
-Summary:
-
+- Exit code: `1`
 - `218 vulnerabilities`
 - `8 low`
 - `45 moderate`
 - `106 high`
 - `59 critical`
 
-Targeted vulnerable packages present before remediation:
-
-- `lodash`, severity `critical`, range `<=4.17.23`, including GHSA-r5fr-rjxr-66jc.
-- `lodash.template`, severity `high`, range `<=4.5.0`, including GHSA-r5fr-rjxr-66jc.
-- `tmp`, severity `high`, range `<=0.2.5`.
-- `shell-quote`, severity `critical`, range `1.1.0 - 1.8.3`.
-
-### npm audit after remediation
+### npm audit after first targeted remediation
 
 Command:
 
@@ -218,21 +172,60 @@ Command:
 npm audit
 ```
 
-Result: exit code `1`.
+Result after fixing the initial `lodash`, `tmp`, and `shell-quote` alerts:
 
-Summary:
-
+- Exit code: `1`
 - `208 vulnerabilities`
 - `6 low`
 - `44 moderate`
 - `101 high`
 - `57 critical`
 
-Targeted vulnerable packages after remediation:
+Those original targeted packages were no longer reported, but the legacy build tree still had a large backlog.
 
-- None. The filtered audit JSON returned no entries for `lodash`, `lodash.template`, `tmp`, or `shell-quote`.
+### npm audit after full dependency stabilization
 
-The remaining audit findings are pre-existing legacy dependency issues outside this targeted remediation.
+Command:
+
+```sh
+npm audit
+```
+
+Final result:
+
+- Exit code: `0`
+- `found 0 vulnerabilities`
+
+### Post-remediation dependency tree
+
+Command:
+
+```sh
+npm ls lodash tmp shell-quote elliptic serve-static chownr send express connect cookie xmlhttprequest-ssl object-path browserify-sign tar gulp-imagemin gulp-sourcemaps brace-expansion hosted-git-info ini meow path-to-regexp trim-newlines urijs
+```
+
+Result: exit code `0`.
+
+Key resolved versions:
+
+- `lodash@4.18.1`
+- `tmp@0.2.7`
+- `shell-quote@1.8.4`
+- `xmlhttprequest-ssl@4.0.0`
+- `connect@3.6.6`
+- `express@4.21.2`
+- `serve-static@1.16.2`
+- `send@0.19.2`
+- `cookie@0.7.2`
+- `brace-expansion@1.1.15` under legacy `minimatch@3.1.5`
+- `hosted-git-info@2.8.9`
+- `ini@1.3.8`
+- `meow@6.1.1` under `sw-precache`
+- `path-to-regexp@1.9.0`
+- `trim-newlines@3.0.1`
+- `urijs@1.19.11`
+
+`browserify`, `browserify-sign`, `elliptic`, `gulp-imagemin`, and `gulp-sourcemaps` are no longer present in the installed dependency tree.
 
 ### Build validation
 
@@ -242,49 +235,68 @@ Command:
 ./node_modules/.bin/gulp build
 ```
 
-Result: failed before running build tasks.
+Result: exit code `1`.
 
-Root cause:
+What passed before the failure:
 
-- `node-sass@4.7.1` does not support the current macOS arm64 / Node.js runtime.
-- Error: `Node Sass does not yet support your current environment: OS X Unsupported architecture (arm64) with Unsupported runtime (115)`.
-- Runtime shown by the failing command: `Node.js v20.19.2`.
+- Gulp loaded `gulpfile.js` without the previous Babel loader warning.
+- `clean` completed.
+- `sass` completed.
+- `js` completed through `esbuild`.
+- `img` completed through `gulp-responsive`/`sharp`.
 
-Classification: pre-existing legacy build incompatibility, not introduced by this remediation. The failure happens while loading `gulp-sass` from `gulpfile.babel.js`, before the targeted packages are exercised.
+Failure:
+
+- `jekyll-build` failed with `Error: spawn jekyll ENOENT`.
+
+Classification:
+
+- Pre-existing local Ruby/Jekyll environment issue, not introduced by the dependency remediation.
+- The Node/Gulp tasks touched by this remediation ran before the failure.
+
+Additional Sass warnings:
+
+- Dart Sass reports deprecation warnings for legacy `@import`, `darken()`, and `lighten()` usage.
+- These are pre-existing Sass content issues and were not rewritten in this security-only change.
 
 Command:
 
 ```sh
-npm start
+bundle exec jekyll build
 ```
 
-Result: failed with the same `node-sass@4.7.1` unsupported runtime error before starting Gulp's default build/server/watch workflow.
+Result: exit code `127`.
+
+Failure:
+
+- `bundler: command not found: jekyll`
+- Bundler suggested running `bundle install`.
+
+Classification:
+
+- Pre-existing Ruby/Jekyll dependency installation issue.
+- No Ruby gems were installed or changed during this remediation.
 
 Command:
 
 ```sh
-bundle exec jekyll build --destination /tmp/portfolioweb-jekyll-build --trace
+node -e 'const sw=require("sw-precache"); Promise.resolve(sw.write("/tmp/portfolioweb-sw-test.js",{staticFileGlobs:["package.json"],stripPrefix:"."})).then(()=>console.log("sw-precache write ok"));'
 ```
 
-Result: failed.
+Result: exit code `0`; `sw-precache write ok`.
 
-Root cause:
-
-- Bundler could not find the `jekyll` executable.
-- Error: `bundler: command not found: jekyll`
-- Suggested by Bundler: `Install missing gem executables with bundle install`
-
-Classification: pre-existing Ruby/Jekyll dependency installation issue, not introduced by this remediation.
+This validates the programmatic `sw-precache.write()` API used by the Gulp `sw` task after the `meow` override.
 
 ## Remaining Risks and Compatibility Concerns
 
-- The repository still has a large pre-existing npm audit backlog: `208 vulnerabilities` after the targeted fix.
-- Several remaining issues require major package changes or framework/toolchain modernization and were intentionally not addressed here.
-- `node-sass@4.7.1` prevents the current Gulp build from loading on macOS arm64 with Node.js 20. This blocks full build verification.
-- `bundle exec jekyll build` is blocked because the Ruby/Jekyll bundle is not currently installed.
-- The npm overrides intentionally force old transitive consumers of `lodash`, `lodash.template`, `tmp`, and `shell-quote` onto patched versions. `npm ls` accepts the resulting tree, but the legacy build cannot be fully validated until the pre-existing Node Sass and Ruby/Jekyll issues are handled.
-- `tmp@0.2.7` requires a modern Node runtime. This is compatible with the current Node.js 20 environment but would not be compatible with very old Node versions that may have been used by the original Gulp stack.
+- `npm audit` is clean at the time of validation.
+- `sw-precache` is still legacy and should be replaced in a later stabilization or Portfolio V2 phase, even though the current audited dependency tree is clean.
+- The `sw-precache` override forces `meow@6.1.1` under an older package. The programmatic `sw-precache.write()` API was validated, but the old `sw-precache` CLI was not a repository workflow and was not separately validated.
+- Full end-to-end Gulp build remains blocked until the local Ruby/Jekyll environment provides the `jekyll` executable.
+- Sass deprecation warnings remain and should be handled as a separate content/CSS modernization task.
+- The build no longer creates Sass source maps; this was an intentional security stabilization tradeoff to remove the vulnerable `gulp-sourcemaps` parser chain.
+- Image generation no longer runs `gulp-imagemin`; `gulp-responsive`/`sharp` still handles resizing and compression with the existing quality settings.
 
 ## Conclusion
 
-The three requested Dependabot alert families were remediated with targeted npm overrides and minimal lockfile updates. `npm audit` no longer reports `lodash`, `lodash.template`, `tmp`, or `shell-quote` as vulnerable, and no repository source directly uses the vulnerable APIs. Full build validation remains blocked by pre-existing legacy toolchain issues unrelated to these dependency overrides.
+The requested Dependabot alert families and follow-up npm audit findings were remediated with the smallest compatible dependency and build-pipeline changes available for the legacy Gulp/Jekyll site. `npm audit` now reports `found 0 vulnerabilities`. The remaining validation blocker is the pre-existing missing local Jekyll executable, not a new npm remediation failure.

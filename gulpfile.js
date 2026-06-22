@@ -4,13 +4,14 @@
 // Gulp and node
 const gulp = require( "gulp" );
 const cp = require( "child_process" );
+const { finished } = require( "stream/promises" );
+const esbuild = require( "esbuild" );
 const size = require( "gulp-size" );
+const through = require( "through2" );
+const { minify } = require( "html-minifier-terser" );
 
 // Basic workflow plugins
 const browserSync = require( "browser-sync" );
-const browserify = require( "browserify" );
-const source = require( "vinyl-source-stream" );
-const buffer = require( "vinyl-buffer" );
 const clean = require( "gulp-clean" );
 const sass = require( "gulp-sass" )( require( "sass" ) );
 const jekyll = process.platform === "win32" ? "jekyll.bat" : "jekyll";
@@ -19,17 +20,11 @@ const messages = {
 };
 
 // Performance workflow plugins
-const htmlmin = require( "gulp-htmlmin" );
-const prefix = require( "gulp-autoprefixer" );
-const sourcemaps = require( "gulp-sourcemaps" );
-const uglify = require( "gulp-uglify" );
-const critical = require( "critical" );
 const sw = require( "sw-precache" );
 
 // Image Generation
 const responsive = require( "gulp-responsive" );
 const rename = require( "gulp-rename" );
-const imagemin = require( "gulp-imagemin" );
 
 const src = {
   css: "_sass/jekyll-sleek.scss",
@@ -47,44 +42,67 @@ function handleErrors() {
   this.emit( "end" ); // Keep gulp from hanging on this task
 }
 
+function minifyHtml( options ) {
+  return through.obj( function( file, enc, cb ) {
+    if ( file.isBuffer() ) {
+      minify( file.contents.toString( enc ), options )
+        .then( result => {
+          file.contents = Buffer.from( result );
+          cb( null, file );
+        } )
+        .catch( cb );
+      return;
+    }
+
+    cb( null, file );
+  } );
+}
+
 // SASS
-gulp.task( "sass", () => {
-  return gulp.src( src.css )
-    .pipe( sourcemaps.init() )
+gulp.task( "sass", async () => {
+  const { default: prefix } = await import( "gulp-autoprefixer" );
+  const stream = gulp.src( src.css )
     .pipe( sass( {
       outputStyle: "compressed",
       includePaths: [ "scss" ],
       onError: browserSync.notify
     } ).on( "error", sass.logError ) )
-    .pipe( sourcemaps.write( { includeContent: false } ) )
-    .pipe( sourcemaps.init( { loadMaps: true } ) )
     .pipe( prefix() )
-    .pipe( sourcemaps.write( "./" ) )
     .pipe( rename( { basename: "main" } ) )
     .pipe( gulp.dest( dist.css ) )
     .pipe( browserSync.reload( { stream: true } ) )
     .pipe( gulp.dest( "assets/css" ) );
+  return finished( stream );
 } );
 
 //  JS
-gulp.task( "js", () => {
-  return browserify( src.js, { debug: true, extensions: [ "es6" ] } )
-    .transform( "babelify", { presets: [ "es2015" ] } )
-    .bundle()
-    .on( "error", handleErrors )
-    .pipe( source( "bundle.js" ) )
-    .pipe( buffer() )
-    .pipe( sourcemaps.init( { loadMaps: true } ) )
-    .pipe( uglify() )
-    .pipe( sourcemaps.write( "./maps" ) )
+gulp.task( "js", async () => {
+  await esbuild.build( {
+    entryPoints: [ src.js ],
+    bundle: true,
+    minify: true,
+    sourcemap: true,
+    target: [ "es2015" ],
+    outfile: `${dist.js}/bundle.js`
+  } ).catch( error => {
+    handleErrors.call( { emit: () => {} }, error );
+    throw error;
+  } );
+
+  const stream = gulp.src( [
+      `${dist.js}/bundle.js`,
+      `${dist.js}/bundle.js.map`
+    ],
+    { base: dist.js, allowEmpty: true } )
     .pipe( size() )
-    .pipe( gulp.dest( dist.js ) )
     .pipe( browserSync.reload( { stream: true } ) )
     .pipe( gulp.dest( "assets/js" ) );
+  return finished( stream );
 } );
 
-gulp.task( "critical", done => {
-  critical.generate( {
+gulp.task( "critical", async () => {
+  const { generate } = await import( "critical" );
+  return generate( {
     base: "_site/",
     src: "index.html",
     css: [ "assets/css/main.css" ],
@@ -103,16 +121,15 @@ gulp.task( "critical", done => {
     extract: false,
     ignore: [ "@font-face" ]
   } );
-  done();
 } );
 
 // Minify HTML
 gulp.task( "html", done => {
     gulp.src( "./_site/index.html" )
-      .pipe( htmlmin( { collapseWhitespace: true } ) )
+      .pipe( minifyHtml( { collapseWhitespace: true } ) )
       .pipe( gulp.dest( "./_site" ) );
     gulp.src( "./_site/*/*html" )
-      .pipe( htmlmin( { collapseWhitespace: true } ) )
+      .pipe( minifyHtml( { collapseWhitespace: true } ) )
       .pipe( gulp.dest( "./_site/./" ) );
     done();
 } );
@@ -129,8 +146,8 @@ gulp.task( "sw", () => {
 } );
 
 // Images
-gulp.task( "img", () => {
-  return gulp.src( "_img/posts/*.{png,jpg}" )
+gulp.task( "img", async () => {
+  const stream = gulp.src( "_img/posts/*.{png,jpg}" )
     .pipe( responsive( {
         "*": [ // For all the images in the posts folder
           {
@@ -174,8 +191,8 @@ gulp.task( "img", () => {
         errorOnUnusedConfig: false,
         silent: true
       } ) )
-      .pipe( imagemin() )
       .pipe( gulp.dest( "assets/img/posts/" ) );
+  return finished( stream );
 } );
 
 // Build the Jekyll Site
