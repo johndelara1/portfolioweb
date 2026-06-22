@@ -1,0 +1,42 @@
+.language-widget {
+  display: flex;
+  align-items: center;
+  min-height: 3.75rem;
+  padding: .938rem 0;
+  border-top: 1px solid #ededed;
+}
+
+.language-widget .goog-te-gadget {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: .75rem;
+  color: #838c8d;
+  line-height: 1;
+}
+
+.language-widget .goog-te-gadget-simple {
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 .625rem;
+  color: #343851;
+  background-color: #fff;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+}
+
+.language-widget .goog-te-gadget-simple a {
+  color: #343851;
+  border-bottom: 0;
+}
+
+.language-widget .goog-te-gadget-icon {
+  display: none;
+}
+
+@media (min-width: 62em) {
+  .language-widget {
+    min-height: 100%;
+    padding: 0 0 0 1rem;
+    border-top: 0;
+  }
+}
