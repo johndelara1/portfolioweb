@@ -42,6 +42,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp"
   },
+  "overrides": {
+    "lodash": "4.18.1",
+    "lodash.template": "4.18.1",
+    "tmp": "0.2.7",
+    "shell-quote": "1.8.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/janczizikow/sleek.git"
