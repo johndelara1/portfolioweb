@@ -10,6 +10,7 @@ This remediation covers the npm Dependabot alerts investigated in June 2026, inc
 - `tmp` / CVE-2026-44705
 - `shell-quote` / CVE-2026-9277
 - follow-up development-scope alerts for `elliptic`, `browserify-sign`, `xmlhttprequest-ssl`, `object-path`, `chownr`, `connect`, `express`, `serve-static`, `send`, `cookie`, and related transitive build packages
+- follow-up Rubygems alerts for `bundler` in `jekyll-sleek.gemspec`
 
 The repository remains a legacy Jekyll/Gulp GitHub Pages portfolio. No framework migration, redesign, portfolio content change, deployment setting change, Dependabot alert dismissal, or `npm audit fix --force` was performed.
 
@@ -20,6 +21,7 @@ The vulnerable packages were not application runtime dependencies in the portfol
 - `lodash`, `lodash.template`, `tmp`, and `shell-quote` were transitive.
 - `elliptic`, `browserify-sign`, `xmlhttprequest-ssl`, `object-path`, `chownr`, `connect`, `express`, `serve-static`, `send`, `cookie`, and `tar` were transitive.
 - Several final `npm audit` findings were transitive through legacy build tooling: `gulp-imagemin`, `gulp-sourcemaps`, `sw-precache`, `critical`, and `gulp`.
+- `bundler` was a direct development dependency in `jekyll-sleek.gemspec`.
 
 ## Dependency Paths Before Remediation
 
@@ -49,6 +51,7 @@ Representative vulnerable paths observed before remediation:
 | `urijs` | root -> `sw-precache@4.1.0` -> `dom-urls@1.1.0` -> `urijs@1.19.0` |
 | `source-map-resolve` / `atob` | root -> `gulp-sourcemaps@2.6.1` -> `css@2.2.1` -> `source-map-resolve@0.3.1` -> `atob@1.1.3` |
 | image optimizer chain | root -> `gulp-imagemin@9.2.0` -> `imagemin` / image binary wrapper stack |
+| `bundler` | root -> `jekyll-sleek.gemspec` -> `bundler ~> 1.12` |
 
 ## Changes Made
 
@@ -57,6 +60,7 @@ Changed files:
 - `package.json`
 - `package-lock.json`
 - `gulpfile.babel.js` renamed to `gulpfile.js`
+- `jekyll-sleek.gemspec`
 - `docs/DEPENDABOT_2026_REMEDIATION.md`
 
 Dependency and build changes:
@@ -68,6 +72,7 @@ Dependency and build changes:
 - Removed `gulp-imagemin`; image generation still uses `gulp-responsive`/`sharp` with the existing resize and quality settings.
 - Removed `gulp-sourcemaps` from the Sass pipeline to remove the vulnerable source map parser chain.
 - Renamed the Gulpfile to `gulpfile.js`, matching `package.json`, `_config.yml`, and the README, and removing the non-fatal Gulp attempt to load Babel for `gulpfile.babel.js`.
+- Updated the gemspec development dependency from `bundler ~> 1.12` to `bundler >= 2.2.33, < 3.0` to clear the open Rubygems Dependabot alerts while keeping Bundler on the 2.x line.
 - Kept `package-lock.json` at `lockfileVersion: 1` for compatibility with the existing legacy lockfile format.
 
 ## Before and After Versions
@@ -99,6 +104,7 @@ Dependency and build changes:
 | `path-to-regexp` | `1.7.0` | `1.9.0` |
 | `trim-newlines` | `1.0.0` under `sw-precache` | `3.0.1` |
 | `urijs` | `1.19.0` | `1.19.11` |
+| `bundler` | `~> 1.12` | `>= 2.2.33`, `< 3.0` |
 
 ## Vulnerable API Usage Check
 
@@ -287,9 +293,18 @@ Result: exit code `0`; `sw-precache write ok`.
 
 This validates the programmatic `sw-precache.write()` API used by the Gulp `sw` task after the `meow` override.
 
+Command:
+
+```sh
+ruby -e 'spec = Gem::Specification.load("jekyll-sleek.gemspec"); spec.validate; puts spec.dependencies.select { |dep| dep.name == "bundler" }.map(&:requirement)'
+```
+
+Result: exit code `0`; Bundler requirement resolved as `>= 2.2.33, < 3.0`.
+
 ## Remaining Risks and Compatibility Concerns
 
 - `npm audit` is clean at the time of validation.
+- The GitHub Dependabot Rubygems alerts for Bundler should close after GitHub rechecks `jekyll-sleek.gemspec` on the default branch.
 - `sw-precache` is still legacy and should be replaced in a later stabilization or Portfolio V2 phase, even though the current audited dependency tree is clean.
 - The `sw-precache` override forces `meow@6.1.1` under an older package. The programmatic `sw-precache.write()` API was validated, but the old `sw-precache` CLI was not a repository workflow and was not separately validated.
 - Full end-to-end Gulp build remains blocked until the local Ruby/Jekyll environment provides the `jekyll` executable.
@@ -299,4 +314,4 @@ This validates the programmatic `sw-precache.write()` API used by the Gulp `sw` 
 
 ## Conclusion
 
-The requested Dependabot alert families and follow-up npm audit findings were remediated with the smallest compatible dependency and build-pipeline changes available for the legacy Gulp/Jekyll site. `npm audit` now reports `found 0 vulnerabilities`. The remaining validation blocker is the pre-existing missing local Jekyll executable, not a new npm remediation failure.
+The requested Dependabot alert families, follow-up npm audit findings, and remaining Bundler Rubygems alerts were remediated with the smallest compatible dependency and build-pipeline changes available for the legacy Gulp/Jekyll site. `npm audit` now reports `found 0 vulnerabilities`. The remaining validation blocker is the pre-existing missing local Jekyll executable, not a new dependency remediation failure.
