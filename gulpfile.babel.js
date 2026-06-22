@@ -4,7 +4,6 @@
 // Gulp and node
 const gulp = require( "gulp" );
 const cp = require( "child_process" );
-const notify = require( "gulp-notify" );
 const size = require( "gulp-size" );
 
 // Basic workflow plugins
@@ -13,7 +12,7 @@ const browserify = require( "browserify" );
 const source = require( "vinyl-source-stream" );
 const buffer = require( "vinyl-buffer" );
 const clean = require( "gulp-clean" );
-const sass = require( "gulp-sass" );
+const sass = require( "gulp-sass" )( require( "sass" ) );
 const jekyll = process.platform === "win32" ? "jekyll.bat" : "jekyll";
 const messages = {
     jekyllBuild: "<span style=\"color: grey\">Running:</span> $ jekyll build"
@@ -43,10 +42,8 @@ const dist = {
 
 function handleErrors() {
   var args = Array.prototype.slice.call( arguments );
-  notify.onError( {
-    title: "Compile Error",
-    message: "<%= error.message %>"
-  } ).apply( this, args );
+  const error = args[ 0 ];
+  console.error( error && error.message ? error.message : error );
   this.emit( "end" ); // Keep gulp from hanging on this task
 }
 
