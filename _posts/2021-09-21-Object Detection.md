@@ -1,31 +1,31 @@
 ---
 layout: post
-title: "Começando com Object Detection!"
+title: "Começando com Detecção de Objetos usando YOLOv4"
 featured-img: object_detection
 categories: [Object Detection, Visão Computacional, Inteligência Artificial, Deep Learning]
 ---
 
-# Vamos começar entendendo sobre o que vamos aprender antes!
+# Vamos começar entendendo o que será construído
 
-> *Tema que iremos abordar neste artigo é sobre detecção de objetos, entenda como é possível identificar objetos que podem auxiliar na tomada de decisão de uma empresa ou até mesmo auxiliar um carro autônomo.*
+> *O tema deste artigo é detecção de objetos, uma tarefa de visão computacional que identifica classes de objetos e suas caixas delimitadoras em imagens. Esse tipo de técnica pode apoiar aplicações como inspeção visual, monitoramento, busca em imagens e percepção em veículos autônomos.*
 > 
 > **Então aperte o cinto e vamos nessa!**
 
 ---
-## Vamos para uma breve apresentação sobre o que vamos apresentar aqui:
+## Breve apresentação
 
-Sobre **object detection** vamos utilizar o modelo ***YOLOv4***, a estrutura do ***Darknet***, mas sobre as anotações utilizaremos o tolkit chamado ***OIDv4_ToolKit*** para baixar anotações públicas do ***Google's Open Images Dataset*** .
+Para **detecção de objetos**, vamos utilizar o modelo ***YOLOv4*** com a estrutura ***Darknet***. Para obter imagens e anotações públicas, usaremos o ***OIDv4_ToolKit***, que facilita o download de dados do ***Google Open Images Dataset***.
 
 
-Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet*** Vamos utilizar o Google Colab disponibilizado por ele: ***https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE***. 
+Este tutorial usa como referência o repositório ***https://github.com/AlexeyAB/darknet*** e o notebook Colab disponibilizado no projeto: ***https://colab.research.google.com/drive/12QusaaRj_lUwCGDvQNfICpa7kA7_a2dE***.
 
 ## Recomendação:
 
-- Para rodar o script no google colab você vai precisar ter uma conta no google para isso!
+- Para rodar o script no Google Colab, você precisa ter uma conta Google.
 
 - Realize uma cópia do notebook antes de iniciar a execução do script.
 
-- Realize citações nas suas aplicações sobre o desenvolvedor desses scripts que você irá utilizar.
+- Cite corretamente os repositórios, datasets e modelos utilizados nas suas aplicações.
 
 ## ALGORITMO YOLOv4
 
@@ -39,18 +39,20 @@ Este algoritmo possui um base no script ***https://github.com/AlexeyAB/darknet**
 
 Seu notebook agora deve ter a GPU habilitada!
 
-### Etapa 2: clonagem e construção de Darknet
-As células a seguir clonarão o darknet do famoso repositório do AlexeyAB, ajustarão o Makefile para habilitar OPENCV e GPU para darknet e então construirão darknet.
+### Etapa 2: clonagem e construção do Darknet
+As células a seguir clonam o Darknet do repositório AlexeyAB, ajustam o `Makefile` para habilitar OpenCV, GPU, CUDNN e CUDNN_HALF, e depois compilam o projeto.
 
-Não se preocupe com nenhum aviso ao executar a célula '! Make'!
+Leia os avisos do `make`: alguns são apenas informativos, mas erros relacionados a CUDA, OpenCV ou CUDNN indicam que o ambiente não foi configurado corretamente.
 
-1) clone darknet repositório.
+1) Clone o repositório Darknet.
 
 `!git clone https://github.com/AlexeyAB/darknet`
 
-3) Alterar makefile para ter GPU e OPENCV habilitados
+2) Entre no diretório do projeto. No Colab, use `%cd` para que a mudança de diretório persista nas próximas células.
 
-`!cd darknet`
+`%cd darknet`
+
+3) Altere o `Makefile` para habilitar GPU, OpenCV, CUDNN e CUDNN_HALF.
 
 `!sed -i 's/OPENCV=0/OPENCV=1/' Makefile`
 
@@ -60,36 +62,35 @@ Não se preocupe com nenhum aviso ao executar a célula '! Make'!
 
 `!sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile`
 
-5) verificar CUDA
+4) Verifique a versão do CUDA disponível no ambiente.
 
 `!/usr/local/cuda/bin/nvcc --version`
 
-5) make Darknet (constrói darknet para que você possa usar o arquivo executável darknet para executar ou treinar detectores de objetos)
+5) Compile o Darknet. Essa etapa gera o executável `darknet`, usado para inferência e treinamento.
 
 `!make`
 
 ### Etapa 3: Baixe pesos YOLOv4 pré-treinados
-YOLOv4 já foi treinado no conjunto de dados coco, que tem 80 classes que ele pode prever. Pegaremos esses pesos pré-treinados para que possamos executar o YOLOv4 nessas classes pré-treinadas e obter detecções.
+O YOLOv4 possui pesos pré-treinados no conjunto de dados COCO, com 80 classes. Esses pesos permitem executar inferência imediatamente nessas classes antes de treinar um detector personalizado.
 
     !wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
 
-### Etapa 4: Como treinar seu próprio detector de objetos personalizados YOLOv4!
-Agora chega a hora de criar seu próprio detector de objetos YOLOv4 personalizado para reconhecer quaisquer classes / objetos que você deseja!
+### Etapa 4: Como treinar seu próprio detector de objetos personalizado com YOLOv4
+Agora chega a hora de criar um detector YOLOv4 personalizado para reconhecer as classes de interesse do seu projeto.
 
 Isso requer alguns truques e dicas, portanto, certifique-se de acompanhar de perto o restante do tutorial.
 
-Para criar um detector YOLOv4 personalizado, precisaremos do seguinte:
+Para criar um detector YOLOv4 personalizado, precisamos do seguinte:
 
-- Conjunto de dados personalizados rotulados
+- Conjunto de imagens anotadas com caixas delimitadoras
 - Arquivo .cfg personalizado
-- arquivos obj.data e obj.names
-- arquivo train.txt (test.txt também é opcional)
+- Arquivos obj.data e obj.names
+- Arquivo train.txt; test.txt ou valid.txt também é recomendado para validação
 
 ##### 1) Etapa 1: coletar e rotular um conjunto de dados personalizado
-- Para criar um detector de objeto personalizado, você precisa de um bom conjunto de dados de imagens e rótulos para que o detector possa ser treinado com eficiência para detectar objetos.
+- Para criar um detector de objetos personalizado, você precisa de um conjunto de imagens representativo e de rótulos consistentes. Em YOLO, cada objeto deve ter classe e coordenadas de caixa delimitadora no formato esperado pelo treinamento.
 
 
-- Isso pode ser feito de duas maneiras. através ou através do uso de imagens do Google ou criando seu próprio conjunto de dados e usando uma ferramenta de anotação para desenhar rótulos manualmente. (Eu recomendo a primeira forma!)
+- Isso pode ser feito baixando dados públicos anotados, como no Open Images Dataset, ou criando seu próprio conjunto de dados e anotando manualmente com ferramentas apropriadas. A melhor escolha depende do domínio: dados públicos aceleram o protótipo, mas dados próprios costumam representar melhor o ambiente real da aplicação.
 
 ---
-
