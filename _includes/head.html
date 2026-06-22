@@ -23,10 +23,14 @@
 
   {% endif %}
 
+  <script>
+   {% include theme-init.js %}
+  </script>
   <style class="inlineCSS">
 
     {% include critical.css %}
     {% include language-widget.css %}
+    {% include theme-toggle.css %}
 
   </style>
   <link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.rel='stylesheet'">

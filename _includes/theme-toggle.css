@@ -1,0 +1,181 @@
+.header__actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: .75rem;
+  padding: 0;
+  color: #343851;
+  background: transparent;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  color: #277cea;
+  background-color: #f9f9f9;
+  outline: 0;
+}
+
+.theme-toggle__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle__icon--moon {
+  fill: currentColor;
+  stroke: none;
+}
+
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .site,
+html[data-theme="dark"] .blog,
+html[data-theme="dark"] .comments {
+  color: #d6dde8;
+  background-color: #0f1720;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] .header__logo,
+html[data-theme="dark"] .controls__item a {
+  color: #f4f7fb;
+}
+
+html[data-theme="dark"] a {
+  color: #7db5ff;
+  border-bottom-color: #7db5ff;
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus {
+  color: #b8d7ff;
+  border-bottom-color: #b8d7ff;
+}
+
+html[data-theme="dark"] .header,
+html[data-theme="dark"] .header.fix-nav,
+html[data-theme="dark"] .header__links,
+html[data-theme="dark"] footer {
+  color: #d6dde8;
+  background-color: #101820;
+}
+
+html[data-theme="dark"] .header__link,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .language-widget .goog-te-gadget-simple,
+html[data-theme="dark"] .language-widget .goog-te-gadget-simple a {
+  color: #e5ebf4;
+}
+
+html[data-theme="dark"] .header__link,
+html[data-theme="dark"] .language-widget,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] .controls__inner {
+  border-color: #263241;
+}
+
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .language-widget .goog-te-gadget-simple {
+  background-color: #151f2b;
+  border-color: #2f3b4d;
+}
+
+html[data-theme="dark"] .theme-toggle:hover,
+html[data-theme="dark"] .theme-toggle:focus {
+  color: #9ec8ff;
+  background-color: #1d2a38;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+html[data-theme="dark"] .header__toggle span {
+  background-color: #e5ebf4;
+}
+
+html[data-theme="dark"] .social__icon {
+  fill: #e5ebf4;
+}
+
+html[data-theme="dark"] .post-card,
+html[data-theme="dark"] .modal__content {
+  color: #cbd5e1;
+  background-color: #151f2b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+}
+
+html[data-theme="dark"] .post-card__inner,
+html[data-theme="dark"] .post-card__inner:hover,
+html[data-theme="dark"] .post-card__inner:focus,
+html[data-theme="dark"] .post-card__meta,
+html[data-theme="dark"] .controls__item span,
+html[data-theme="dark"] footer,
+html[data-theme="dark"] footer a,
+html[data-theme="dark"] .language-widget .goog-te-gadget {
+  color: #aab6c6;
+}
+
+html[data-theme="dark"] pre,
+html[data-theme="dark"] code,
+html[data-theme="dark"] table th {
+  color: #e5ebf4;
+  background-color: #172231;
+  border-color: #2a3647;
+}
+
+html[data-theme="dark"] table,
+html[data-theme="dark"] table th,
+html[data-theme="dark"] table td,
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea {
+  border-color: #2a3647;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea {
+  color: #f4f7fb;
+  background-color: transparent;
+}
+
+html[data-theme="dark"] hr {
+  background-color: #263241;
+}
+
+@media (min-width: 62em) {
+  .theme-toggle {
+    margin-left: 1rem;
+  }
+}
