@@ -8,7 +8,7 @@ permalink: /contato/
 
 Gosto do que viu? Tem alguma dica, crítica ou sugestão?
 
-É só preencher o formulário ou me enviar um [email me](mailto:{{site.email}}).
+É só preencher o formulário ou me enviar um [e-mail](mailto:{{site.email}}).
 
 Até logo!
 
