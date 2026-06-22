@@ -4,7 +4,7 @@ title: Sobre
 permalink: /sobre/
 ---
 
-![participantes](https://dl.dropbox.com/s/bo94l66zuz2nqup/sleek.jpg?dl=0)
+![John de Lara trabalhando com dados]({{ '/assets/img/posts/trajetoria_lg.jpg' | relative_url }})
 
 ## Um pouco da minha trajetória
 
