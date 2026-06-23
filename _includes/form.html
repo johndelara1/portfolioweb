@@ -1,4 +1,4 @@
-<form id="contactForm" action="https://formspree.io/{{site.email}}" method="post" novalidate>
+<form id="contactForm" action="{{ site.formspree_endpoint }}" method="POST" novalidate>
   <div class="form__input half">
     <label for="name">Nome</label>
     <input type="text" name="name" id="name" autocomplete="name" required>
@@ -6,12 +6,12 @@
 
   <div class="form__input input half">
     <label for="email">E-mail</label>
-    <input type="email" name="_replyto" id="email" autocomplete="email" required>
+    <input type="email" name="email" id="email" autocomplete="email" required>
   </div>
 
   <div class="form__input">
     <label for="message">Mensagem</label>
-    <textarea type="text" name="message" id="message" rows="7" autocomplete="message" required></textarea>
+    <textarea name="message" id="message" rows="7" autocomplete="message" required></textarea>
   </div>
 
   <input type="hidden" name="_subject" value="Website Form submission">
