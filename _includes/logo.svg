@@ -1,7 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Generator: Gravit.io -->
-<svg class="logo" viewBox="0 0 47 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs><clipPath id="_clipPath_RbvQJkX4bin1ySL0RAHvfUc2utRYzOm1"><rect width="47" height="15"/></clipPath></defs>
-<g clip-path="url(#_clipPath_RbvQJkX4bin1ySL0RAHvfUc2utRYzOm1)" id="logo">
-<text transform="matrix(1,0,0,1,0,13.707)" style="font-family:'Roboto Mono';font-weight:400;font-size:22px;font-style:normal;fill:#000000;stroke:none;">John</text>
-</g>
+<svg
+  class="logo"
+  viewBox="0 0 72 28"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      d="M23 5v12.2c0 4.4-3.1 6.8-7.2 6.8-3 0-5.4-1.2-7-3.4"
+      stroke="currentColor"
+      stroke-width="3.2"
+    />
+    <path
+      d="M42 5v18h19"
+      stroke="currentColor"
+      stroke-width="3.2"
+    />
+    <path
+      d="M31 23 37 5"
+      stroke="#277cea"
+      stroke-width="3.2"
+    />
+  </g>
 </svg>
