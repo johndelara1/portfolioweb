@@ -3,7 +3,7 @@
     {% assign categories = post.categories %}
     <span class="post-card__label">
       {% for category in categories %}
-        <a href="{{site.baseurl}}/categories/#{{category|slugize}}" class="label"> {{ category }} </a>
+        <a href="{{ '/categories/' | relative_url }}#{{category | slugify}}" class="label"> {{ category }} </a>
         {% unless forloop.last %}&nbsp;{% endunless %}
       {% endfor %}
     </span>
@@ -12,12 +12,12 @@
     {% if post.featured-img %}
       <figure class="post-card__thumb">
         <img
-          src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_placehold.jpg"
-          data-srcset="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_thumb.jpg, {{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_thumb@2x.jpg 2x"
+          src="{{ post.featured-img | prepend: '/assets/img/posts/' | append: '_placehold.jpg' | relative_url }}"
+          data-srcset="{{ post.featured-img | prepend: '/assets/img/posts/' | append: '_thumb.jpg' | relative_url }}, {{ post.featured-img | prepend: '/assets/img/posts/' | append: '_thumb@2x.jpg' | relative_url }} 2x"
           class="lazyload blur"
           alt="{{post.title}}"
         />
-        <noscript><img src="{{ site.url }}{{ site.baseurl }}/assets/img/posts/{{post.featured-img}}_thumb.jpg" alt="{{ post.title }}"></noscript>
+        <noscript><img src="{{ post.featured-img | prepend: '/assets/img/posts/' | append: '_thumb.jpg' | relative_url }}" alt="{{ post.title }}"></noscript>
       </figure>
     {% else %}
       <figure class="post-card__thumb">

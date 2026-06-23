@@ -7,7 +7,7 @@ categories: [Sistemas de Recomendação, Machine Learning, MLOps, Data Engineeri
 
 # Onde cada decisão deveria acontecer?
 
-No [artigo anterior]({% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %}), apresentei a arquitetura completa de um sistema de recomendação: dados, geração de candidatos, elegibilidade, ranking, reranking, logging, avaliação e monitoramento.
+No [artigo anterior]({{ site.baseurl }}{% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %}), apresentei a arquitetura completa de um sistema de recomendação: dados, geração de candidatos, elegibilidade, ranking, reranking, logging, avaliação e monitoramento.
 
 Este texto parte de outro ponto. A ideia aqui não é redesenhar o pipeline, mas discutir uma pergunta que aparece quando o sistema começa a crescer:
 

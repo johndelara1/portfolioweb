@@ -8,13 +8,14 @@ permalink: /categories/
 {% for category in site.categories %}
   <div class="archive-group">
     {% capture category_name %}{{ category | first }}{% endcapture %}
-    <div id="#{{ category_name | slugize }}"></div>
+    {% assign category_slug = category_name | slugify %}
+    <div id="{{ category_slug }}"></div>
     <p></p>
     <h3 class="category-head">{{ category_name }}</h3>
-    <a name="{{ category_name | slugize }}"></a>
+    <a name="{{ category_slug }}"></a>
     {% for post in site.categories[category_name] %}
     <article class="archive-item">
-      <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
+      <h4><a href="{{ post.url | relative_url }}">{{post.title}}</a></h4>
     </article>
     {% endfor %}
   </div>

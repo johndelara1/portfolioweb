@@ -7,7 +7,7 @@ categories: [Sistemas de Recomendação, Deep Learning, Machine Learning, MLOps]
 
 # SASRec além do Transformer
 
-Nos artigos anteriores, apresentei [a arquitetura de um sistema de recomendação]({% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %}) e depois discuti os contratos entre [retrieval, ranking e reranking]({% post_url 2026-06-23-retrieval-ranking-reranking-revisado %}). Este artigo entra em uma decisão mais específica:
+Nos artigos anteriores, apresentei [a arquitetura de um sistema de recomendação]({{ site.baseurl }}{% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %}) e depois discuti os contratos entre [retrieval, ranking e reranking]({{ site.baseurl }}{% post_url 2026-06-23-retrieval-ranking-reranking-revisado %}). Este artigo entra em uma decisão mais específica:
 
 > quando a sequência recente de interações tem sinal suficiente para justificar um modelo como SASRec?
 
@@ -402,9 +402,9 @@ O objetivo não é provar que SASRec sempre vence. Um bom resultado de portfóli
 
 ## Leitura relacionada
 
-- [O que transforma um modelo em um sistema de recomendação?]({% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %})
-- [Retrieval, Ranking e Reranking: contratos e trade-offs entre camadas]({% post_url 2026-06-23-retrieval-ranking-reranking-revisado %})
-- [Análise de crimes em Swindon usando Regras de Associação, R e Spark]({% post_url 2020-05-14-Regras de Associação %})
+- [O que transforma um modelo em um sistema de recomendação?]({{ site.baseurl }}{% post_url 2026-06-22-Sistemas-de-Recomendacao-Introducao %})
+- [Retrieval, Ranking e Reranking: contratos e trade-offs entre camadas]({{ site.baseurl }}{% post_url 2026-06-23-retrieval-ranking-reranking-revisado %})
+- [Análise de crimes em Swindon usando Regras de Associação, R e Spark]({{ site.baseurl }}{% post_url 2020-05-14-Regras de Associação %})
 
 ---
 
