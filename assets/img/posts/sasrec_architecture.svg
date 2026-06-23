@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura simplificada do SASRec</title>
+  <desc id="desc">Diagrama autoral mostrando sequencia de itens, embeddings, blocos SASRec com mascara causal, estado da ultima posicao e scores para proximos itens.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e1726"/>
+      <stop offset="0.55" stop-color="#111827"/>
+      <stop offset="1" stop-color="#07111f"/>
+    </linearGradient>
+    <linearGradient id="block" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17324f"/>
+      <stop offset="1" stop-color="#0f2238"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#21c7a8"/>
+      <stop offset="1" stop-color="#4ea3ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#63e6be"/>
+    </marker>
+    <style>
+      .label { font-family: Inter, Arial, sans-serif; fill: #e5eefb; font-size: 22px; font-weight: 700; }
+      .small { font-family: Inter, Arial, sans-serif; fill: #b8c7da; font-size: 16px; }
+      .tiny { font-family: Inter, Arial, sans-serif; fill: #9fb0c5; font-size: 13px; }
+      .mono { font-family: "SFMono-Regular", Consolas, monospace; fill: #f8fafc; font-size: 17px; font-weight: 700; }
+      .box { fill: url(#block); stroke: #2f5279; stroke-width: 1.5; rx: 18; filter: url(#shadow); }
+      .mini { fill: #12243a; stroke: #335b85; stroke-width: 1.2; rx: 12; }
+      .token { fill: #102235; stroke: #2b5278; stroke-width: 1.2; rx: 10; }
+      .pad { fill: #1a2230; stroke: #445064; }
+      .flow { stroke: #63e6be; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .muted-flow { stroke: #416989; stroke-width: 2; fill: none; marker-end: url(#arrow); opacity: 0.8; }
+      .accent { fill: url(#accent); }
+      .good { fill: #34d399; }
+      .bad { fill: #ef6f6c; }
+      .line { stroke: #284968; stroke-width: 1; opacity: 0.9; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="1140" cy="110" r="170" fill="#1f5c87" opacity="0.12"/>
+  <circle cx="140" cy="640" r="220" fill="#21c7a8" opacity="0.07"/>
+
+  <text x="64" y="70" class="label" style="font-size:32px">SASRec em uma tarefa de next-item prediction</text>
+  <text x="64" y="104" class="small">A ordem recente vira estado sequencial; a mascara causal impede que o treino veja o futuro.</text>
+
+  <rect x="62" y="158" width="214" height="244" class="box"/>
+  <text x="88" y="196" class="label">Sequencia</text>
+  <text x="88" y="222" class="small">ultimos L eventos</text>
+  <g transform="translate(86 250)">
+    <rect x="0" y="0" width="70" height="42" class="token pad"/>
+    <text x="17" y="27" class="mono">PAD</text>
+    <rect x="0" y="54" width="70" height="42" class="token"/>
+    <text x="18" y="81" class="mono">i12</text>
+    <rect x="0" y="108" width="70" height="42" class="token"/>
+    <text x="18" y="135" class="mono">i87</text>
+  </g>
+  <g transform="translate(170 250)">
+    <rect x="0" y="0" width="70" height="42" class="token"/>
+    <text x="18" y="27" class="mono">i31</text>
+    <rect x="0" y="54" width="70" height="42" class="token"/>
+    <text x="18" y="81" class="mono">i44</text>
+    <rect x="0" y="108" width="70" height="42" class="token"/>
+    <text x="18" y="135" class="mono">i90</text>
+  </g>
+
+  <path d="M276 278 C316 278 316 278 352 278" class="flow"/>
+
+  <rect x="352" y="158" width="212" height="244" class="box"/>
+  <text x="382" y="196" class="label">Embeddings</text>
+  <text x="382" y="222" class="small">item + posicao</text>
+  <g transform="translate(388 260)">
+    <rect x="0" y="0" width="138" height="46" class="mini"/>
+    <text x="20" y="29" class="small">item id</text>
+    <rect x="0" y="66" width="138" height="46" class="mini"/>
+    <text x="20" y="95" class="small">posicao t</text>
+    <path d="M68 46 L68 66" stroke="#63e6be" stroke-width="3"/>
+    <circle cx="68" cy="56" r="16" class="accent"/>
+    <text x="62" y="62" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#06111f">+</text>
+  </g>
+
+  <path d="M564 278 C604 278 604 278 640 278" class="flow"/>
+
+  <rect x="640" y="132" width="306" height="296" class="box"/>
+  <text x="674" y="174" class="label">Blocos SASRec</text>
+  <text x="674" y="200" class="small">repetidos N vezes</text>
+  <rect x="678" y="230" width="230" height="46" class="mini"/>
+  <text x="704" y="259" class="small">causal self-attention</text>
+  <rect x="678" y="292" width="230" height="46" class="mini"/>
+  <text x="704" y="321" class="small">residual + layer norm</text>
+  <rect x="678" y="354" width="230" height="46" class="mini"/>
+  <text x="704" y="383" class="small">point-wise feed-forward</text>
+
+  <rect x="652" y="468" width="282" height="162" class="box"/>
+  <text x="682" y="504" class="label">Mascara causal</text>
+  <text x="682" y="528" class="small">posicao t nao acessa t+1</text>
+  <g transform="translate(700 548)">
+    <line x1="0" y1="0" x2="144" y2="0" class="line"/>
+    <line x1="0" y1="24" x2="144" y2="24" class="line"/>
+    <line x1="0" y1="48" x2="144" y2="48" class="line"/>
+    <line x1="0" y1="72" x2="144" y2="72" class="line"/>
+    <line x1="0" y1="96" x2="144" y2="96" class="line"/>
+    <line x1="0" y1="0" x2="0" y2="96" class="line"/>
+    <line x1="36" y1="0" x2="36" y2="96" class="line"/>
+    <line x1="72" y1="0" x2="72" y2="96" class="line"/>
+    <line x1="108" y1="0" x2="108" y2="96" class="line"/>
+    <line x1="144" y1="0" x2="144" y2="96" class="line"/>
+    <text x="13" y="18" class="tiny good">ok</text>
+    <text x="49" y="18" class="tiny bad">x</text>
+    <text x="85" y="18" class="tiny bad">x</text>
+    <text x="121" y="18" class="tiny bad">x</text>
+    <text x="13" y="42" class="tiny good">ok</text>
+    <text x="49" y="42" class="tiny good">ok</text>
+    <text x="85" y="42" class="tiny bad">x</text>
+    <text x="121" y="42" class="tiny bad">x</text>
+    <text x="13" y="66" class="tiny good">ok</text>
+    <text x="49" y="66" class="tiny good">ok</text>
+    <text x="85" y="66" class="tiny good">ok</text>
+    <text x="121" y="66" class="tiny bad">x</text>
+    <text x="13" y="90" class="tiny good">ok</text>
+    <text x="49" y="90" class="tiny good">ok</text>
+    <text x="85" y="90" class="tiny good">ok</text>
+    <text x="121" y="90" class="tiny good">ok</text>
+  </g>
+
+  <path d="M946 278 C986 278 986 278 1022 278" class="flow"/>
+
+  <rect x="1022" y="158" width="200" height="244" class="box"/>
+  <text x="1052" y="196" class="label">Score</text>
+  <text x="1052" y="222" class="small">h_t x item</text>
+  <circle cx="1096" cy="282" r="38" fill="#12243a" stroke="#4ea3ff" stroke-width="2"/>
+  <text x="1081" y="290" class="mono">h_t</text>
+  <path d="M1135 282 C1160 282 1160 282 1180 282" class="muted-flow"/>
+  <g transform="translate(1048 330)">
+    <rect x="0" y="0" width="132" height="32" class="token"/>
+    <text x="18" y="22" class="small">top-1: i77</text>
+    <rect x="0" y="42" width="132" height="32" class="token"/>
+    <text x="18" y="64" class="small">top-2: i18</text>
+    <rect x="0" y="84" width="132" height="32" class="token"/>
+    <text x="18" y="106" class="small">top-3: i05</text>
+  </g>
+
+  <path d="M803 428 C803 448 803 448 803 468" class="muted-flow"/>
+  <text x="64" y="648" class="tiny">Diagrama autoral baseado em Kang &amp; McAuley (2018), no repositorio original SASRec e na documentacao RecBole.</text>
+</svg>
